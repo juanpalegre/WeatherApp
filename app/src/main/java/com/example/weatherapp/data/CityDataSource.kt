@@ -1,16 +1,15 @@
 package com.example.weatherapp.data
 
-import com.example.weatherapp.models.CityData
+import com.example.weatherapp.models.WeatherResponse
+import com.example.weatherapp.repository.WebService
+import com.example.weatherapp.utils.Constansts
 
-object CityDataSource {
-    fun getCityData(): List<CityData>{
-        return listOf(
-            CityData("Ciudad 1", "País 1", 25.0, "12:00 PM"),
-            CityData("Ciudad 2", "País 2", 20.5, "01:30 PM"),
-            CityData("Ciudad 3", "País 3", 22.3, "03:45 PM"),
-            CityData("Ciudad 1", "País 1", 25.0, "12:00 PM"),
-            CityData("Ciudad 2", "País 2", 20.5, "01:30 PM"),
-            CityData("Ciudad 3", "País 3", 22.3, "03:45 PM"),
-        )
+class CityDataSource(private val webService: WebService) {
+
+    suspend fun getLocalWeatherData(lat: Double, lon: Double, apiKey: String): WeatherResponse {
+        return webService.getLocalWeatherData(lat, lon, Constansts.API_KEY)
+    }
+    suspend fun getWeatherDataList(cityIds: String, apiKey: String): List<WeatherResponse> {
+        return webService.getWeatherDataList(cityIds, Constansts.API_KEY).list
     }
 }

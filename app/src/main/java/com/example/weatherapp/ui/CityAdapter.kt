@@ -25,7 +25,6 @@ class CityViewHolder(private val binding: ItemCityBinding) : RecyclerView.ViewHo
         binding.textCityName.text = cityData.cityName
         binding.textCountryName.text = cityData.countryName
         binding.textTemperature.text = "Temperature: ${cityData.currentTemperature}°C"
-        binding.textTime.text = "Time: ${cityData.currentTime}"
     }
 }
 
